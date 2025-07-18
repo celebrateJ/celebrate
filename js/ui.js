@@ -38,9 +38,9 @@ $(window).ready(function(){
     _scrollTop = _content.scrollTop();
     
     // AOS 리프레시 (스크롤 시 위치 재계산)
-    // if(typeof AOS !== 'undefined') {
-    //     AOS.refresh();
-    // }
+    if(typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 
   });
 });
@@ -53,27 +53,27 @@ $(window).on('resize', function(e){
 $(window).on('load', function() {
   setVH();
 
-  // AOS.init({
-  //     offset: 100,
-  //     delay: 0,
-  //     duration: 800,
-  //     easing: 'ease-in-out',
-  //     once: false,
-  //     mirror: false,
-  //     anchorPlacement: 'top-bottom',
-  //     // 스크롤 컨테이너 지정
-  //     container: '.content-wrap'
-  // });
+  AOS.init({
+      offset: 100,
+      delay: 0,
+      duration: 800,
+      easing: 'ease-in-out',
+      once: false,
+      mirror: false,
+      anchorPlacement: 'top-bottom',
+      // 스크롤 컨테이너 지정
+      container: '.content-wrap'
+  });
   
-  // // AOS 리프레시 (스크롤 위치 재계산)
-  // setTimeout(function() {
-  //     AOS.refresh();
-  // }, 100);
+  // AOS 리프레시 (스크롤 위치 재계산)
+  setTimeout(function() {
+      AOS.refresh();
+  }, 100);
   
-  // // 추가 안전장치: 수동으로 AOS 요소들 체크
-  // setTimeout(function() {
-  //     checkAOSElements();
-  // }, 500);
+  // 추가 안전장치: 수동으로 AOS 요소들 체크
+  setTimeout(function() {
+      checkAOSElements();
+  }, 500);
 
 });
 
