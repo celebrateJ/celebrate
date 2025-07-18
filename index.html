@@ -20,7 +20,8 @@
 	<script type="text/javascript" src="js/libs/aos/aos.js"></script>
 	
   <!-- Kakao Maps API -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd"></script>
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd"></script> -->
+
   	
   <!-- UI JavaScript -->
 	<script type="text/javascript" src="js/ui.js"></script>
@@ -538,14 +539,16 @@
   <!-- // popup area -->
 </body>
 
+<script async defer src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd"></script>
 <script>
-  var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-  var options = { //지도를 생성할 때 필요한 기본 옵션
-    center: new kakao.maps.LatLng(37.4496, 127.1269), // 가천컨벤션센터 좌표
-    level: 3 //지도의 레벨(확대, 축소 정도)
-  };
-
-  var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+  document.addEventListener('DOMContentLoaded', function () {
+    var container = document.getElementById('map');
+    var options = {
+      center: new kakao.maps.LatLng(37.4496, 127.1269),
+      level: 3
+    };
+    var map = new kakao.maps.Map(container, options);
+  });
 </script>
 
 
