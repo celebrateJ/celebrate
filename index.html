@@ -539,16 +539,18 @@
   <!-- // popup area -->
 </body>
 
-<script async defer src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd&autoload=false"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  function initMap() {
     var container = document.getElementById('map');
     var options = {
       center: new kakao.maps.LatLng(37.4496, 127.1269),
       level: 3
     };
-    var map = new kakao.maps.Map(container, options);
-  });
+    new kakao.maps.Map(container, options);
+  }
+
+  kakao.maps.load(initMap);
 </script>
 
 
