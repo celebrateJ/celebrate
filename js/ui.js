@@ -29,7 +29,6 @@ $(window).ready(function(){
   btnToastActive();
   setFold();
   setCopyText();
-  setMap();
   setGalleryMore();
   setAudioControl();
   setGallerySwiper();
@@ -320,22 +319,6 @@ function setMap(){
       console.error('카카오맵 초기화 오류:', error);
     }
   }
-
-  // 카카오맵 API 로딩 대기
-  var checkKakaoMap = setInterval(function() {
-    if (typeof kakao !== 'undefined' && kakao.maps) {
-      clearInterval(checkKakaoMap);
-      initKakaoMap();
-    }
-  }, 100);
-
-  // 5초 후에도 로딩되지 않으면 중단
-  setTimeout(function() {
-    clearInterval(checkKakaoMap);
-    if (typeof kakao === 'undefined' || !kakao.maps) {
-      console.log('카카오맵 API 로딩 실패');
-    }
-  }, 5000);
 }
 
 // 갤러리 더보기 기능

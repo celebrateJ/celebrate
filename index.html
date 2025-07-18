@@ -21,6 +21,11 @@
 	
   <!-- Kakao Maps API -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa8516637c54efde97ed355fdc94e6bd"></script>
+  <script>
+    kakao.maps.load(function() {
+      setMap(); // kakao API가 완전히 로드된 뒤 setMap 실행
+    });
+  </script>
 	
   <!-- UI JavaScript -->
 	<script type="text/javascript" src="js/ui.js"></script>
