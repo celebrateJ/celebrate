@@ -222,6 +222,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 
 /* 지도 영역 스타일 */
 .location-wrap .map-box{margin-top: 2rem; }
+.location-wrap .map-box #map{border-radius: .8rem; overflow: hidden;}
 .location-wrap .map-box .map-buttons{display: flex; gap: 1rem; padding: 1.5rem 2rem; background-color: #fbf9f9;}
 .location-wrap .map-box .btn-map{flex: 1; display: flex; align-items: center; justify-content: center; padding: 1.2rem 1rem; border-radius: 0.8rem; text-decoration: none; font-size: 1.3rem; font-weight: 500; transition: all 0.3s ease;}
 .location-wrap .map-box .btn-map.kakao{background-color: #fee500; color: #000;}
