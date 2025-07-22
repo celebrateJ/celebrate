@@ -128,8 +128,9 @@ function dialogOpen(el, tg){
     }
   });
 
-  gallerySwiper.slideTo(tg.closest('li').index(), 0);
-  console.log('?')
+  if(gallerySwiper && tg.closest('li').length > 0){
+    gallerySwiper.slideTo(tg.closest('li').index(), 0);
+  }
 }
 
 // 팝업 닫힘 처리
@@ -151,7 +152,9 @@ function dialogClose(tg){
     $('body').removeClass('pop-open');
   }
 
-  gallerySwiper.slideTo(0)
+  if(gallerySwiper && tg.closest('li').length > 0){
+    gallerySwiper.slideTo(0);
+  }
 }
 
 /*  toast message
@@ -355,7 +358,6 @@ function setGallerySwiper(){
     init: false,
     slidesPerView: 1,
     spaceBetween: 0,
-    loop: false, // zoom과 충돌 방지
     centeredSlides: true,
     watchOverflow: true,
     pagination: {
