@@ -92,7 +92,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .popup-box .popup-mid, .popup-box .popup-btm{display: flex; width: 100%; height: auto;}
 .popup-box .popup-mid{align-items: center; padding-left: 2rem; padding-right: 2rem; vertical-align:middle;}
 .popup-box .popup-mid .popup{background-color: #fff; padding: 3rem 0}
-.popup-box .popup-mid .pop-header{padding: 0 2rem 2rem;}
+.popup-box .popup-mid .pop-header{padding: 0 2rem 1rem;}
 .popup-box .popup-mid .pop-header + .pop-body{padding-top: 0;}
 .popup-box .popup-mid .btn-close{top: -1.5rem; right: 1.5rem;}
 .popup-box .popup-mid .btn-close::before, .popup-box .popup-mid .btn-close::after { background: #000;}
