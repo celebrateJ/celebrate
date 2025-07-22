@@ -129,6 +129,7 @@ function dialogOpen(el, tg){
   });
 
   gallerySwiper.slideTo(tg.closest('li').index(), 0);
+  console.log('?')
 }
 
 // 팝업 닫힘 처리
