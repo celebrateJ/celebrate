@@ -275,6 +275,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .swiper .swiper-pagination-fraction{color: #fff;}
 .swiper .swiper-pagination-fraction .swiper-pagination-current,
 .swiper .swiper-pagination-fraction .swiper-pagination-total{color: #fff;}
+.swiper button{width: 100%; height: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center;}
 
 .swiper-slide {overflow: visible !important;}
 .swiper-zoom-container {width: 100%; height: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center;}

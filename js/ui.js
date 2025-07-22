@@ -6,7 +6,9 @@ let _scrollTop = 0,
 	_docker,
   popIdx = 999,
   stickyEl,
-  showSticky = true;
+  showSticky = true,
+  gallerySwiper;
+
 
 $(window).on('load', function() {
 })
@@ -113,14 +115,6 @@ function setDialog(){
 
 // 팝업 열림 처리
 function dialogOpen(el, tg){
-  if(tg.data('show-sticky') === ''){
-    if(showSticky === false) {
-      stickyEl.removeClass('none');
-      $('body').addClass('sticky-fixed');
-    }
-    $('body').addClass('show-sticky');
-  }
-
 	el.addClass('active');
   $('body').addClass('pop-open');
   ++popIdx;
@@ -134,7 +128,7 @@ function dialogOpen(el, tg){
     }
   });
 
-
+  gallerySwiper.slideTo(tg.closest('li').index(), 0);
 }
 
 // 팝업 닫힘 처리
@@ -155,6 +149,8 @@ function dialogClose(tg){
   if($('.popup-wrap.active').length === 0){
     $('body').removeClass('pop-open');
   }
+
+  gallerySwiper.slideTo(0)
 }
 
 /*  toast message
@@ -354,7 +350,7 @@ function setAudioControl(){
 }
 
 function setGallerySwiper(){
-  const gallerySwiper = new Swiper('.gallery-swiper .swiper', {
+  gallerySwiper = new Swiper('.gallery-swiper .swiper', {
     init: false,
     slidesPerView: 1,
     spaceBetween: 0,
