@@ -144,7 +144,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .btn-silent{position: fixed; top: 2rem; right: 2rem; width: 4rem; height: 4rem; background: #fff url(../img/ico-speak.svg) center / 2.5rem no-repeat; border: 1px solid #eee; border-radius: 50%; z-index: 999;}
 .btn-silent.mute{background-image: url(../img/ico-mute.svg);}
 .wedding-main {position: relative; display: flex; align-items: center; min-height: 66.7rem; height: calc(var(--vh, 1vh) * 100); height: calc(100dvh); padding: 4rem;}
-.wedding-main .wedding-inner{position: relative; }
+.wedding-main .wedding-inner{position: relative; margin: 0 auto;}
 .wedding-main .title-box{text-align: center;}
 .wedding-main .title-box .txt{font-size: 1rem; display: block; letter-spacing: .2rem}
 .wedding-main .title-box .date{font-size: 1.6rem; margin-top: .5rem; display: block;}
