@@ -22,7 +22,7 @@ kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
 form, fieldset, legend, a, textarea, input, select, option, button, label, 
 table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, 
 details, figcaption, figure, footer, header, hgroup, menu, nav, section, 
-summary, time, mark, audio, video{word-break:break-all;font-family:'Cafe24Oneprettynight', sans-serif;;color:#1a1a1a;font-size:1.5rem;font-weight:400;line-height:1.6; letter-spacing: -.05rem;}
+summary, time, mark, audio, video{word-break:break-all;font-family:'Cafe24Oneprettynight', sans-serif;;color:#1a1a1a;font-size:1.5rem;font-weight:400;line-height:1.6; letter-spacing: -.05rem; outline: none;}
 button{background-color: transparent; font-size: inherit; font-weight: inherit; color: inherit; text-align: left;}
 button[disabled], button:disabled{cursor: default;}
 button[disabled]:active, button:disabled:active,
