@@ -302,8 +302,8 @@ body.pop-open .wrapper{filter: blur(2px)}
 
 .comment-box .ip-box + .ip-box{margin-top: 1rem;}
 .comment-box .ip-box .form-ip{display: block; width: 100%; height: 44px; border: 1px solid #eee; border-radius: .6rem; padding: 0 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
-.comment-box .ip-box .err-msg{display: block; margin-top: 1rem; color: #ef665b; font-size: 1.2rem; line-height: 1;}
-.comment-box .ip-box .err-msg:before{content: ''; display: inline-block; width: 1.2rem; height: 1.2rem; margin: 0 .5rem 0 0; background: url(../img/ico-caution.svg) 0 / 100% no-repeat; vertical-align: top;}
+.comment-box .err-msg{display: block; margin-top: 1rem; color: #ef665b; font-size: 1.2rem; line-height: 1;}
+.comment-box .err-msg:before{content: ''; display: inline-block; width: 1.2rem; height: 1.2rem; margin: 0 .5rem 0 0; background: url(../img/ico-caution.svg) 0 / 100% no-repeat; vertical-align: top;}
 
 .comment-box .ip-box .form-ta{display: block; width: 100%; height: 200px; border: 1px solid #eee; border-radius: .6rem; padding: 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
 
