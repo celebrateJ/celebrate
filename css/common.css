@@ -225,9 +225,11 @@ body.pop-open .wrapper{filter: blur(2px)}
 .location-wrap .how-to-go .item + .item{margin-top: 4rem;}
 .location-wrap .how-to-go .item .tit{padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px dashed #f5e0e0; font-size: 1.8rem; line-height: 1;}
 .location-wrap .how-to-go .item .tit:before{content: ''; display: inline-block; width: 1.8rem; height: 1.8rem; margin: 0 .7rem 0 0; background: url(../img/ico-subway.svg) 0 / 100% no-repeat; vertical-align: top;}
+.location-wrap .how-to-go .item .tit.map:before{background: url(../img/ico-map.png) 0 / 100% no-repeat;}
 .location-wrap .how-to-go .item .tit.bus:before{background: url(../img/ico-bus.svg) 0 / 100% no-repeat;}
 .location-wrap .how-to-go .item .tit.car:before{background: url(../img/ico-car.svg) 0 / 100% no-repeat;}
 .location-wrap .how-to-go .item .tit.parking:before{background: url(../img/ico-p.svg) 0 / 100% no-repeat;}
+.location-wrap .how-to-go .item .img-box{border-radius: 1.2rem; overflow: hidden;}
 
 /* 지도 영역 스타일 */
 .location-wrap .map-box{margin-top: 2rem; }
