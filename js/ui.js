@@ -409,6 +409,24 @@ function loadGuestbook() {
   });
 }
 
+// 방명록 글 수정
+async function updateGuestbook(id, newMessage, password) {
+  const docRef = db.collection('guestbook').doc(id);
+  const docSnap = await docRef.get();
+  
+  if (!docSnap.exists) {
+    throw new Error('글이 존재하지 않습니다');
+  }
+  
+  if (docSnap.data().password !== password) {
+    throw new Error('비밀번호가 일치하지 않습니다');
+  }
+  
+  await docRef.update({
+    message: newMessage
+  });
+}
+
 // 방명록 글 삭제
 async function deleteGuestbook(id, password) {
   const docRef = db.collection('guestbook').doc(id);
@@ -416,6 +434,33 @@ async function deleteGuestbook(id, password) {
   if (!docSnap.exists) throw new Error('글이 없습니다');
   if (docSnap.data().password !== password) throw new Error('비밀번호가 일치하지 않습니다');
   await docRef.delete();
+}
+
+// 입력값 검증 함수
+function validateEditInput(message, password) {
+  if (!message.trim()) {
+    throw new Error('메시지를 입력해주세요');
+  }
+  
+  if (message.length > 200) {
+    throw new Error('메시지는 200자 이하로 입력해주세요');
+  }
+  
+  if (!password.trim()) {
+    throw new Error('비밀번호를 입력해주세요');
+  }
+  
+  return true;
+}
+
+// XSS 방지 함수
+function sanitizeMessage(message) {
+  return message
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
 }
 
 // 화면에 목록 그리기 (여러 card-list 지원)
@@ -430,7 +475,10 @@ function renderGuestbook(list) {
       $list.innerHTML += `
         <li>
           <div class="card-box">
-            <button class="btn-del" data-id="${item.id}" data-pop-tg="popCommentDel"><span class="blind">삭제</span></button>
+            <div class="card-actions">
+              <button class="btn-edit" data-id="${item.id}" data-pop-tg="popCommentEdit"><span class="blind">수정</span></button>
+              <button class="btn-del" data-id="${item.id}" data-pop-tg="popCommentDel"><span class="blind">삭제</span></button>
+            </div>
             <p class="desc">${item.message.replace(/\n/g, '<br>')}</p>
             <div class="card-info">
               <div class="name">From <span>${item.name}</span></div>
@@ -463,6 +511,37 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 
+  // 수정 버튼 클릭 시 데이터 로드 및 팝업 열기
+  document.addEventListener('click', async function(e) {
+    if (e.target.matches('.btn-edit[data-pop-tg="popCommentEdit"]')) {
+      const id = e.target.getAttribute('data-id');
+      try {
+        const docRef = db.collection('guestbook').doc(id);
+        const docSnap = await docRef.get();
+        
+        if (docSnap.exists) {
+          const data = docSnap.data();
+          const pop = document.getElementById('popCommentEdit');
+          
+          // 기존 데이터로 폼 채우기
+          pop.querySelector('.edit-name').value = data.name;
+          pop.querySelector('.edit-message').value = data.message;
+          pop.querySelector('.edit-password').value = '';
+          pop.dataset.editId = id;
+          
+          // 에러 메시지 숨김
+          pop.querySelector('.err-msg').style.display = 'none';
+          
+          // 팝업 열기
+          dialogOpen($(pop));
+        }
+      } catch (error) {
+        console.error('데이터 로드 실패:', error);
+        setToastOnOff('데이터를 불러올 수 없습니다.');
+      }
+    }
+  });
+
   // 삭제 버튼 클릭 시 id를 팝업에 저장
   document.addEventListener('click', function(e) {
     if (e.target.matches('.btn-del[data-pop-tg="popCommentDel"]')) {
@@ -471,6 +550,58 @@ document.addEventListener('DOMContentLoaded', function() {
       if (pop) pop.dataset.deleteId = id;
     }
   });
+
+  // 수정 팝업에서 '수정하기' 버튼 클릭 이벤트
+  var editBtn = document.querySelector('#popCommentEdit .btn-comment');
+  if (editBtn) {
+    editBtn.onclick = async function() {
+      const pop = document.querySelector('#popCommentEdit');
+      const id = pop.dataset.editId;
+      const password = pop.querySelector('.edit-password').value.trim();
+      const message = pop.querySelector('.edit-message').value.trim();
+      
+      // 에러 메시지 초기화
+      pop.querySelector('.err-msg').style.display = 'none';
+      
+      try {
+        // 입력값 검증
+        validateEditInput(message, password);
+        
+        // 메시지 수정
+        await updateGuestbook(id, sanitizeMessage(message), password);
+        
+        // 성공 시 폼 초기화 및 팝업 닫기
+        pop.querySelector('.edit-password').value = '';
+        pop.querySelector('.edit-message').value = '';
+        pop.querySelector('.edit-name').value = '';
+        pop.classList.remove('active');
+        document.body.classList.remove('pop-open');
+        
+        setToastOnOff('방명록이 수정되었습니다.');
+        
+      } catch (error) {
+        // 에러 메시지 표시
+        pop.querySelector('.err-msg').textContent = error.message;
+        pop.querySelector('.err-msg').style.display = 'block';
+      }
+    };
+    
+    // 수정 팝업 입력값 변경 시 에러 메시지 숨김
+    var editPwInput = document.querySelector('#popCommentEdit .edit-password');
+    var editMsgInput = document.querySelector('#popCommentEdit .edit-message');
+    
+    if (editPwInput) {
+      editPwInput.addEventListener('input', function() {
+        document.querySelector('#popCommentEdit .err-msg').style.display = 'none';
+      });
+    }
+    
+    if (editMsgInput) {
+      editMsgInput.addEventListener('input', function() {
+        document.querySelector('#popCommentEdit .err-msg').style.display = 'none';
+      });
+    }
+  }
 
   // 삭제 팝업에서 '지우기' 버튼 클릭 시만 비밀번호 오류 메시지 표시
   var delBtn = document.querySelector('#popCommentDel .btn-comment');
