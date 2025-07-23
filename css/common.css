@@ -293,6 +293,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .card-list .card-box{position: relative; padding: 2.5rem 2rem; background-color: #fff; border-radius: 1.2rem; box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.08); text-align: left;}
 .card-list .card-box p{word-break: keep-all;}
 .card-list .card-box .name{font-size: 1.3rem; color: #999; vertical-align: 0;}
+.card-list .card-box .name span{font-size: 1.6rem; vertical-align: 0;}
 .card-list .card-box .date{font-size: 1.3rem; color: #999; vertical-align: 0;}
 .card-list .card-info{display: flex; align-items: center; justify-content: space-between; margin-top: 1rem;}
 .card-list .btn-del{position: absolute; top: 1rem; right: 1rem; width: 2rem; height: 2rem; background: url(../img/ico-card-del.svg) 0 / 100% no-repeat;}
