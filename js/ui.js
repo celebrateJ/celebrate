@@ -419,7 +419,7 @@ async function updateGuestbook(id, newMessage, password) {
   }
   
   if (docSnap.data().password !== password) {
-    throw new Error('비밀번호가 일치하지 않습니다');
+    throw new Error('비밀번호가 달라요');
   }
   
   await docRef.update({
@@ -432,7 +432,7 @@ async function deleteGuestbook(id, password) {
   const docRef = db.collection('guestbook').doc(id);
   const docSnap = await docRef.get();
   if (!docSnap.exists) throw new Error('글이 없습니다');
-  if (docSnap.data().password !== password) throw new Error('비밀번호가 일치하지 않습니다');
+  if (docSnap.data().password !== password) throw new Error('비밀번호가 달라요');
   await docRef.delete();
 }
 
