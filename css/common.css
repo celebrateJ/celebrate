@@ -297,8 +297,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .card-list .card-box .date{font-size: 1.3rem; color: #999; vertical-align: 0;}
 .card-list .card-info{display: flex; align-items: flex-end; justify-content: space-between; margin-top: 1rem;}
 .card-list .card-actions{position: absolute; top: 1rem; right: 1rem; display: flex; gap: 0.5rem;}
-.card-list .btn-edit{width: 2rem; height: 2rem; background: url(../img/ico-card-del.svg) 0 / 100% no-repeat; opacity: 0.7; transform: rotate(45deg);}
-.card-list .btn-edit:hover{opacity: 1;}
+.card-list .btn-edit{width: 2rem; height: 2rem; background: url(../img/ico-card-edit.svg) center / 1.6rem no-repeat;}
 .card-list .btn-del{width: 2rem; height: 2rem; background: url(../img/ico-card-del.svg) 0 / 100% no-repeat;}
 
 .comment-box .ip-box + .ip-box{margin-top: 1rem;}
