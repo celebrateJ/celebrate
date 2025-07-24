@@ -387,6 +387,14 @@ function setGoTop(){
   $('.btn-top').on('click', function(){
     $('.content-wrap').scrollTop(0);
   });
+
+  $('.content-wrap').on('scroll', function(){
+    if($('.content-wrap').scrollTop() > 300){
+      $('.btn-top').addClass('active');
+    }else{
+      $('.btn-top').removeClass('active');
+    }
+  });
 }
 
 // 1. Firebase 설정 (본인 프로젝트의 config로 교체)
