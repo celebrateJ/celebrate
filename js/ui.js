@@ -35,6 +35,7 @@ $(window).ready(function(){
   setAudioControl();
   setGallerySwiper();
   setZoom();
+  setGoTop()
   
   _content.on('scroll', function(e){
     // 전역변수 재선언
@@ -379,6 +380,12 @@ function setZoom(){
   $('.btn-zoom').on('click', function(){
     $('html').toggleClass('zoom');
     $(this).toggleClass('zoomout');
+  });
+}
+
+function setGoTop(){
+  $('.btn-top').on('click', function(){
+    $('.content-wrap').scrollTop(0);
   });
 }
 
