@@ -41,6 +41,8 @@ table{table-layout: fixed; width: 100%;}
 	html{font-size:62.5%;} /* 임의 조정 */
 }
 
+html.zoom{font-size: 80%;}
+
 
 /*=== GUIDE TEMPLATE LAYOUT ===*/
 .blind{position: absolute; overflow: hidden; border: 0; width: 1px; height: 1px; clip: rect(1px, 1px, 1px, 1px); -webkit-clip-path: inset(50%); clip-path: inset(50%);}
@@ -150,9 +152,12 @@ body.pop-open .wrapper{filter: blur(2px)}
 .img-box {position: relative; width: 100%;}
 .img-box img{width: 100%;}
 
-.btn-silent{position: fixed; top: 2rem; right: 2rem; width: 4rem; height: 4rem; background: #fff url(../img/ico-speak.svg) center / 2.5rem no-repeat; border: 1px solid #eee; border-radius: 50%; z-index: 999;}
+.fixed-btn-wrap{position: fixed; top: 2rem; right: 2rem; z-index: 99;}
+.btn-zoom{width: 4rem; height: 4rem; background: #fff url(../img/ico-zoomin.png) center / 2.5rem no-repeat; border: 1px solid #eee; border-radius: 50%; z-index: 999;}
+.btn-zoom.zoomout{background-image: url(../img/ico-zoomout.png);}
+.btn-silent{width: 4rem; height: 4rem; background: #fff url(../img/ico-speak.svg) center / 2.5rem no-repeat; border: 1px solid #eee; border-radius: 50%; z-index: 999;}
 .btn-silent.mute{background-image: url(../img/ico-mute.svg);}
-.wedding-main {position: relative; display: flex; align-items: center; min-height: 66.7rem; height: calc(var(--vh, 1vh) * 100); height: calc(100dvh); padding: 4rem;}
+.wedding-main {position: relative; display: flex; align-items: center; min-height: 66.7rem; height: calc(var(--vh, 1vh) * 100); height: calc(100dvh); padding: 40px;}
 .wedding-main .wedding-inner{position: relative; margin: 0 auto;}
 .wedding-main .title-box{text-align: center;}
 .wedding-main .title-box .txt{font-size: 1rem; display: block; letter-spacing: .2rem}
@@ -160,12 +165,12 @@ body.pop-open .wrapper{filter: blur(2px)}
 .wedding-main .img-area{position: relative; margin-top: 2rem;}
 .wedding-main .img-area .man,
 .wedding-main .img-area .woman{position: absolute; top: 50%; transform: translateY(-50%); writing-mode: vertical-lr; display: block; width: 2rem; font-size: 1.5rem;}
-.wedding-main .img-area .man{left: -3rem;}
-.wedding-main .img-area .woman{right: -3rem;}
+.wedding-main .img-area .man{left: -30px;}
+.wedding-main .img-area .woman{right: -30px;}
 .wedding-main .img-box{border-radius: 999rem 999rem 0 0; overflow: hidden;}
 .wedding-main .img-area + .desc-box{margin-top: 2rem; text-align: center;}
 
-.intro-wrap{position: relative; margin: 0 auto; padding-top: 5rem; width: 30rem; text-align: center;}
+.intro-wrap{position: relative; margin: 0 auto; padding-top: 5rem; max-width: 300px; text-align: center;}
 .intro-wrap:before{content: ''; position: absolute; top: 0; left: 50%; display: block; width: 2rem; height: 2rem; background: url(../img/leaf1.jpeg) 0 / 100% no-repeat; transform: translateX(-50%);}
 .intro-wrap p{line-height: 2;}
 .intro-wrap p + p{border-top: 1px solid #f7f2f2;}
@@ -178,9 +183,9 @@ body.pop-open .wrapper{filter: blur(2px)}
 .invite-wrap .name-box{margin-top: 1rem; font-size: 2rem; line-height: 1.4;}
 .invite-wrap .name-box span{font-size: 1.2rem; vertical-align: 0;}
 
-.img-box.type-card{width: calc(100% - 10rem); margin: 7rem 5rem 0; border-radius: 1.2rem; overflow: hidden;}
+.img-box.type-card{width: calc(100% - 100px); margin: 7rem 50px 0; border-radius: 1.2rem; overflow: hidden;}
 
-.marry-wrap{margin-top: 7rem; padding: 0 3rem;}
+.marry-wrap{margin-top: 7rem; padding: 0 30px;}
 .marry-wrap .img-box{border-radius: 1.2rem; overflow: hidden;}
 .marry-wrap .item-wrap{display: flex; gap: 1rem; margin-top: 2rem;}
 .marry-wrap .item-wrap .item{flex: 1;}
@@ -188,7 +193,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .marry-wrap .item-wrap .item + .item .tit{color: rgb(208, 140, 149)}
 .marry-wrap .item-wrap .tit{color: rgb(54, 128, 186)}
 
-.calendar-wrap{margin-top: 7rem; padding: 0 3rem;}
+.calendar-wrap{margin-top: 7rem; padding: 0 30px;}
 .calendar-wrap p span{color: #d08c95;}
 
 /* 캘린더 스타일 */
@@ -204,7 +209,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .calendar-wrap .tbl-cal .wedding-day::before{content: "♥"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; color: #d08c95; z-index: 1;}
 .calendar-wrap .tbl-cal .wedding-day::after{content: "오후 6시 40분"; position: absolute; bottom: -1.5rem; left: 50%; transform: translateX(-50%); font-size: 1.2rem; color: #d08c95; font-weight: 600; white-space: nowrap; z-index: 3;}
 
-.gallery-wrap{margin-top: 5rem; padding: 4rem 2rem; background-color: #fbf5f5;}
+.gallery-wrap{margin-top: 5rem; padding: 4rem 20px; background-color: #fbf5f5;}
 .gallery-wrap .gallery-inner{margin-top: 2rem;}
 .gallery-wrap .gallery-list{display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;}
 .gallery-wrap .gallery-list li{overflow: hidden; width: calc((100% - 2rem) / 3); border-radius: .8rem;}
@@ -216,7 +221,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 .gallery-wrap .btn-more:after{content: ''; display: inline-block; width: 1.5rem; height: 1.5rem; margin: .4rem 0 0 .5rem; background: url(../img/ico-arr.svg) 0 / 100% no-repeat; vertical-align: top;}
 .gallery-wrap .gallery-list.active + .btn-more:after{transform: rotate(180deg);}
 
-.location-wrap{margin-top: 7rem; padding: 0 3rem;}
+.location-wrap{margin-top: 7rem; padding: 0 30px;}
 .location-wrap .address-box{position: relative;}
 .location-wrap .address-box p{line-height: 1.8;}
 .location-wrap .address-box .btn-copy{margin-top: 1rem;}
@@ -244,11 +249,11 @@ body.pop-open .wrapper{filter: blur(2px)}
 .location-wrap .map-box .btn-map.kakao .ico{background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");}
 .location-wrap .map-box .btn-map.tmap .ico{background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");}
 
-.sub-info-wrap{margin-top: 7rem; padding: 0 3rem;}
+.sub-info-wrap{margin-top: 7rem; padding: 0 30px;}
 .sub-info-wrap .img-box{border-radius: 1.2rem; overflow: hidden;}
 .sub-info-wrap .desc{margin-top: 2rem; line-height: 1.8;}
 
-.account-wrap{margin-top: 5rem; padding: 4rem; background-color: #fbf5f5;}
+.account-wrap{margin-top: 5rem; padding: 4rem 30px; background-color: #fbf5f5;}
 .account-wrap .desc{margin-bottom: 3rem;}
 .account-wrap .fold-box{margin-top: 2rem; background-color: #fff; border-radius: 1.2rem; padding: 1rem 2rem 1rem;}
 .account-wrap .fold-box .fold-header{position: relative; text-align: left;}
@@ -290,7 +295,7 @@ body.pop-open .wrapper{filter: blur(2px)}
 
 .swiper-slide {overflow: visible !important;}
 
-.comment-wrap{margin-top: 7rem; padding: 0 3rem 3rem;}
+.comment-wrap{margin-top: 7rem; padding: 0 30px 3rem;}
 .card-list li + li{margin-top: 2rem;}
 .card-list .card-box{position: relative; padding: 3rem 2rem 2.5rem; background-color: #fff; border-radius: 1.2rem; box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.08); text-align: left;}
 .card-list .card-box p{font-size: 1.4rem; word-break: keep-all;}
@@ -303,11 +308,11 @@ body.pop-open .wrapper{filter: blur(2px)}
 .card-list .btn-del{width: 2rem; height: 2rem; background: url(../img/ico-card-del.svg) 0 / 100% no-repeat;}
 
 .comment-box .ip-box + .ip-box{margin-top: 1rem;}
-.comment-box .ip-box .form-ip{display: block; width: 100%; height: 44px; border: 1px solid #eee; border-radius: .6rem; padding: 0 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
+.comment-box .ip-box .form-ip{display: block; width: 100%; height: 4.4rem; border: 1px solid #eee; border-radius: .6rem; padding: 0 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
 .comment-box .err-msg{display: block; margin-top: 1rem; color: #ef665b; font-size: 1.2rem; line-height: 1;}
 .comment-box .err-msg:before{content: ''; display: inline-block; width: 1.2rem; height: 1.2rem; margin: 0 .5rem 0 0; background: url(../img/ico-caution.svg) 0 / 100% no-repeat; vertical-align: top;}
 
-.comment-box .ip-box .form-ta{display: block; width: 100%; height: 200px; border: 1px solid #eee; border-radius: .6rem; padding: 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
+.comment-box .ip-box .form-ta{display: block; width: 100%; height: 20rem; border: 1px solid #eee; border-radius: .6rem; padding: 1.2rem; font-size: 1.4rem; line-height: 1.8rem;}
 
-.btn-comment{display: block; margin-top: 2rem; width: 100%; height: 44px; background-color: #4e5972; color: #fff; border-radius: .6rem; padding: 0 1.2rem; font-size: 1.4rem; line-height: 4.2rem; text-align: center;}
+.btn-comment{display: block; margin-top: 2rem; width: 100%; height: 4.4rem; background-color: #4e5972; color: #fff; border-radius: .6rem; padding: 0 1.2rem; font-size: 1.4rem; line-height: 4.2rem; text-align: center;}
 .comment-desc{text-align: left; color: #000; line-height: 3.2rem;}

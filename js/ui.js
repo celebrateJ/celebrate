@@ -34,6 +34,7 @@ $(window).ready(function(){
   setGalleryMore();
   setAudioControl();
   setGallerySwiper();
+  setZoom();
   
   _content.on('scroll', function(e){
     // 전역변수 재선언
@@ -372,6 +373,13 @@ function setGallerySwiper(){
   });
 
   gallerySwiper.init();
+}
+
+function setZoom(){
+  $('.btn-zoom').on('click', function(){
+    $('html').toggleClass('zoom');
+    $(this).toggleClass('zoomout');
+  });
 }
 
 // 1. Firebase 설정 (본인 프로젝트의 config로 교체)
