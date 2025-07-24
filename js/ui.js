@@ -345,19 +345,34 @@ function setGalleryMore(){
 }
 
 function setAudioControl(){
-  $('.btn-silent').on('click', function(){
-    const audio = document.querySelector('audio');
-    const isMuted = audio.muted;
+  const audio = document.querySelector('audio');
+  const btn = $('.btn-silent');
 
-    if(isMuted){
-      audio.play();
+  btn.on('click', function(){
+    if (!audio.paused) {
+      // 이미 재생 중이면 음소거만 토글
+      audio.muted = !audio.muted;
+    } else {
+      // 재생 중이 아니면 음소거 해제 + 재생
       audio.muted = false;
-      $('.btn-silent').removeClass('mute');
-    }else{
-      audio.muted = true;
-      $('.btn-silent').addClass('mute');
+      audio.play();
     }
+    // 버튼 상태는 아래 이벤트 리스너에서 자동으로 처리
   });
+
+  function updateMuteButton() {
+    if(audio.muted || audio.paused) {
+      btn.addClass('mute');
+    } else {
+      btn.removeClass('mute');
+    }
+  }
+
+  audio.addEventListener('play', updateMuteButton);
+  audio.addEventListener('pause', updateMuteButton);
+  audio.addEventListener('volumechange', updateMuteButton);
+
+  updateMuteButton();
 }
 
 function setGallerySwiper(){
