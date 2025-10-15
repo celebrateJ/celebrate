@@ -51,6 +51,15 @@ $(window).ready(function(){
     });
   }
   
+  // AOS 초기화 직후 음악 재생
+  const audio = document.querySelector('audio');
+  if(audio) {
+    audio.play().catch(function(error) {
+      // 브라우저가 자동 재생을 차단한 경우 음소거 상태로 표시
+      console.log('자동 재생이 차단되었습니다:', error);
+    });
+  }
+  
   _content.on('scroll', function(e){
     // 전역변수 재선언
     _scrollTop = _content.scrollTop();
