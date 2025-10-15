@@ -35,7 +35,21 @@ $(window).ready(function(){
   setAudioControl();
   setGallerySwiper();
   setZoom();
-  setGoTop()
+  setGoTop();
+  
+  // AOS 초기화를 ready에서 바로 실행
+  if(typeof AOS !== 'undefined') {
+    AOS.init({
+      offset: 100,
+      delay: 0,
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+      anchorPlacement: 'top-bottom',
+      container: '.content-wrap'
+    });
+  }
   
   _content.on('scroll', function(e){
     // 전역변수 재선언
@@ -53,48 +67,17 @@ $(window).on('resize', function(e){
   setVH();
 });
 
-// AOS 초기화를 DOM 로드 완료 후 실행
+// 이미지 로드 완료 후 AOS 리프레시
 $(window).on('load', function() {
   setVH();
-
-  AOS.init({
-      offset: 100,
-      delay: 0,
-      duration: 800,
-      easing: 'ease-in-out',
-      once: false,
-      mirror: false,
-      anchorPlacement: 'top-bottom',
-      // 스크롤 컨테이너 지정
-      container: '.content-wrap'
-  });
   
-  // AOS 리프레시 (스크롤 위치 재계산)
-  setTimeout(function() {
+  // 이미지 로드 완료 후 AOS 위치 재계산
+  if(typeof AOS !== 'undefined') {
+    setTimeout(function() {
       AOS.refresh();
-  }, 100);
-  
-  // 추가 안전장치: 수동으로 AOS 요소들 체크
-  setTimeout(function() {
-      checkAOSElements();
-  }, 500);
-
+    }, 100);
+  }
 });
-
-// AOS 요소들이 제대로 작동하는지 확인하는 함수
-function checkAOSElements() {
-    $('[data-aos]').each(function() {
-        var $element = $(this);
-        var offset = $element.offset();
-        var scrollTop = $('.content-wrap').scrollTop();
-        var windowHeight = $('.content-wrap').height();
-        
-        // 요소가 뷰포트에 들어왔는지 확인
-        if (offset && offset.top <= scrollTop + windowHeight - 100) {
-            $element.addClass('aos-animate');
-        }
-    });
-}
 
 // vh 재설정 
 function setVH() {
