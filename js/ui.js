@@ -37,6 +37,15 @@ $(window).ready(function(){
   setZoom();
   setGoTop();
   
+  // AOS 초기화 직전 음악 재생
+  const audio = document.querySelector('audio');
+  if(audio) {
+    audio.play().catch(function(error) {
+      // 브라우저가 자동 재생을 차단한 경우 음소거 상태로 표시
+      console.log('자동 재생이 차단되었습니다:', error);
+    });
+  }
+  
   // AOS 초기화를 ready에서 바로 실행
   if(typeof AOS !== 'undefined') {
     AOS.init({
@@ -48,15 +57,6 @@ $(window).ready(function(){
       mirror: false,
       anchorPlacement: 'top-bottom',
       container: '.content-wrap'
-    });
-  }
-  
-  // AOS 초기화 직후 음악 재생
-  const audio = document.querySelector('audio');
-  if(audio) {
-    audio.play().catch(function(error) {
-      // 브라우저가 자동 재생을 차단한 경우 음소거 상태로 표시
-      console.log('자동 재생이 차단되었습니다:', error);
     });
   }
   
