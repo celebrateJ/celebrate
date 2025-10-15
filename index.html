@@ -25,7 +25,6 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 
 	<!-- Plug-In javascript -->
-	<script defer type="text/javascript" src="js/libs/jquery/jquery-3.3.1.min.js"></script>
 	<script defer type="text/javascript" src="js/libs/swiper/swiper.min.js"></script>
 	<script defer type="text/javascript" src="js/libs/aos/aos.js"></script>
 	
@@ -36,9 +35,6 @@
   <!-- Firebase SDK 추가 (반드시 먼저!) -->
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-  <!-- UI JavaScript -->
-  <script defer type="text/javascript" src="js/ui.js"></script>
 
  
 </head>
@@ -470,6 +466,12 @@
     <!-- //container -->
   </div>
   <!-- //Wrapper -->
+  
+  <!-- jQuery 먼저 로드 -->
+  <script type="text/javascript" src="js/libs/jquery/jquery-3.3.1.min.js"></script>
+  <!-- UI JavaScript - 음악 자동 재생을 위해 body 끝에 배치 -->
+  <script type="text/javascript" src="js/ui.js"></script>
+  
   <!-- popup area -->
   <div class="popup-wrap" id="popComment">
     <div class="popup-box">
