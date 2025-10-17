@@ -395,18 +395,40 @@ function setGoTop(){
   });
 }
 
-// 1. Firebase 설정 (본인 프로젝트의 config로 교체)
-const firebaseConfig = {
-  apiKey: "AIzaSyAUEex6zWiKpgK0oYOt_Q9QbkAaxvKyuR8",
-  authDomain: "celebrate-e9d31.firebaseapp.com",
-  projectId: "celebrate-e9d31",
-  storageBucket: "celebrate-e9d31.firebasestorage.app",
-  messagingSenderId: "768572407327",
-  appId: "1:768572407327:web:8da694d2c5c502ab681f2a",
-  measurementId: "G-1C7E2BGSBG"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// 1. Firebase 설정 및 초기화
+let db = null;
+
+function initFirebase() {
+  if (typeof firebase === 'undefined') {
+    console.error('Firebase SDK가 로드되지 않았습니다.');
+    return;
+  }
+  
+  try {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAUEex6zWiKpgK0oYOt_Q9QbkAaxvKyuR8",
+      authDomain: "celebrate-e9d31.firebaseapp.com",
+      projectId: "celebrate-e9d31",
+      storageBucket: "celebrate-e9d31.firebasestorage.app",
+      messagingSenderId: "768572407327",
+      appId: "1:768572407327:web:8da694d2c5c502ab681f2a",
+      measurementId: "G-1C7E2BGSBG"
+    };
+    
+    // 이미 초기화되지 않았다면 초기화
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    
+    db = firebase.firestore();
+    console.log('Firebase 초기화 성공');
+  } catch (error) {
+    console.error('Firebase 초기화 실패:', error);
+  }
+}
+
+// Firebase 초기화 실행
+initFirebase();
 
 // 방명록 글 등록
 async function addGuestbook(name, message, password) {
@@ -420,14 +442,25 @@ async function addGuestbook(name, message, password) {
 
 // 방명록 글 목록 불러오기
 function loadGuestbook() {
-  db.collection('guestbook').orderBy('created_at', 'desc').onSnapshot(snapshot => {
-    const list = [];
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      list.push({ id: doc.id, ...data });
+  if (!db) {
+    console.error('Firestore가 초기화되지 않았습니다.');
+    return;
+  }
+  
+  try {
+    db.collection('guestbook').orderBy('created_at', 'desc').onSnapshot(snapshot => {
+      const list = [];
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        list.push({ id: doc.id, ...data });
+      });
+      renderGuestbook(list);
+    }, error => {
+      console.error('방명록 불러오기 실패:', error);
     });
-    renderGuestbook(list);
-  });
+  } catch (error) {
+    console.error('방명록 불러오기 에러:', error);
+  }
 }
 
 // 방명록 글 수정
